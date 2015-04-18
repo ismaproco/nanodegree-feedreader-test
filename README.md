@@ -1,3 +1,30 @@
+# Project Development
+
+- First of all I review the code and functionality of the application in my browser, I initiate and instance of the http-server to open the project. I found that is pretty straigh foward, a list view where the feeds are loaded, a left side bar that toggle visibility with the click of the button in the header navigation. 
+
+- Then I start reviewing the code of the app.js, it has the list with the feeds called AllFeeds, page loading logic that fill the html list and add event handlers, also there is some basic logic  for the application.
+
+- Next I start to read the feedreader.js specification for the test definition, and I found that the comments explain very well the expectations for each one of the tests.
+
+- I start to develop the tests for the feed object, evaluating the URL and NAME definitions.
+
+- Then I added some logic to test the menu click.
+
+- Then I try to implement the logic to test the async calls of the application.
+
+
+
+
+# Reference
+
+- In the jquery API is explained how to simulate the click of an element.
+
+https://api.jquery.com/click/
+
+- 
+
+
+
 # Project Overview
 
 In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
