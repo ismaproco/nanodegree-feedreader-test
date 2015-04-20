@@ -99,9 +99,7 @@ $(function() {
          // execute the load function before the expectations, and send the done
          // object to identify if the callback is succesfull
          beforeEach( function(done) {
-            loadFeed(0, function(){
-                done();
-            });
+            loadFeed(0, done);
          });
 
          // checks the .feed container to have at least one entry
@@ -110,11 +108,39 @@ $(function() {
          });
     });
 
+    /* TODO: Write a new test suite named "New Feed Selection" */
+
+    describe('New Feed Selection', function() {
+        /* TODO: Write a test that ensures when a new feed is loaded
+         * by the loadFeed function that the content actually changes.
+         * Remember, loadFeed() is asynchronous.
+         */
+         var contentChanged = false;
+         // execute the load function before the expectations, and send the done
+         // object to identify if the callback is succesfull
+         beforeEach( function(done) {
+            loadFeed(0, function() {
+                // add event to identify dom changes in the element
+                $('.feed').bind('DOMSubtreeModified',function(){
+                    contentChanged = true;
+                    done();
+                });
+
+                // load another feed
+                loadFeed(0);
+            });
+         });
+
+         // execute the load function for the first element on the allFeed list.
+         it('loadFeed changes the content in the .feed container', function() {
+            expect( contentChanged ).toBe(true);
+            // unbind dom changes event
+            $('.feed').unbind('DOMSubtreeModified');
+         });
+    });
+
 
     /* ADDITIONAL FEEDS */
-
-
-    
     describe('AllFeeds Array methods', function() { 
         // Expect the addition of an element to the allFeeds Object to update the HTML of the menu 
         it('Add feed entry', function() {
@@ -136,6 +162,8 @@ $(function() {
         // expect the update of an element in the allFeeds array to update the corresponding 
         // HTML LI of the menu
         it('Update feed entry', function() {
+            //add the 'New Entry' to the all feeds so it will be updated next
+            allFeeds.push({name:'New Entry', url:'http://googleblog.blogspot.com/' });
             // look for the feed with the name 'New Entry' and modified the name property for 
             // 'Brand New entry'
             allFeeds.forEach( function( feed, index ) {
