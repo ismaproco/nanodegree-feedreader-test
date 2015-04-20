@@ -87,7 +87,7 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
-    describe('Initial Entries', function(){
+    describe('Initial Entries', function() {
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
@@ -109,4 +109,46 @@ $(function() {
             expect($('.feed .entry').length).toBeGreaterThan(0);
          });
     });
+
+
+    /* ADDITIONAL FEEDS */
+
+
+    
+    describe('AllFeeds Array methods', function() { 
+        // Expect the addition of an element to the allFeeds Object to update the HTML of the menu 
+        it('Add feed entry', function() {
+            allFeeds.push({name:'New Entry', url:'http://googleblog.blogspot.com/' });
+            expect($('.feed-list li:contains("New Entry")').length).toBeGreaterThan(0);
+        });
+
+        // Expect the removal of an element in the allFeeds array to remove the HTML LI of the menu
+        it('Remove feed entry', function() {
+            // Filter the elements of the all feed
+            allFeeds = allFeeds.filter(function(feed) {
+                return feed.name !== 'New Entry'; 
+            });
+
+            // Look for an li with the text 'New Entry' and expect to not exist
+            expect($('.feed-list li:contains("New Entry")').length).toBe(0);
+        });
+
+        // expect the update of an element in the allFeeds array to update the corresponding 
+        // HTML LI of the menu
+        it('Update feed entry', function() {
+            // look for the feed with the name 'New Entry' and modified the name property for 
+            // 'Brand New entry'
+            allFeeds.forEach( function( feed, index ) {
+                if( feed.name === 'New Entry' ) {
+                    allFeeds[index].name = 'Brand New Entry';
+                }
+            });
+
+            //First check the previous element not longer exists and the new one does
+            expect($('.feed-list li:contains("New Entry")').length).toBe(0);
+            expect($('.feed-list li:contains("Brand New Entry")').length).toBeGreaterThan(0);
+        });
+    });
+
+
 }());
