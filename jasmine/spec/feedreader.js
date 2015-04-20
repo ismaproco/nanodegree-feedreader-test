@@ -163,6 +163,4 @@ $(function() {
             expect($('.feed-list li:contains("Brand New Entry")').length).toBeGreaterThan(0);
         });
     });
-
-
 }());
