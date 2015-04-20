@@ -36,19 +36,19 @@ $(function() {
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).toBeGreaterThan(0);
             });
-        })
+        });
 
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-         it('All feeds had the NAME defined', function() {
+        it('All feeds had the NAME defined', function() {
             allFeeds.forEach( function(feed) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name.length).toBeGreaterThan(0);
             });
-        })
+        });
     });
 
 
@@ -120,20 +120,18 @@ $(function() {
 
          // execute the load function for the first element on the allFeed list.
          it('loadFeed changes the content in the .feed container', function(done) {
-            var innerContentHTML = '';
+            var contentChanged = false;
             loadFeed(0, function() {
-                // gets the html for the loaded element
-                innerContentHTML = $('.feed').html();
+                // add event to identify dom changes in the element
+                $('.feed').bind("DOMSubtreeModified",function(){
+                  contentChanged = true;
+                  expect( contentChanged ).toBe(true);
+                  done();
+                });
 
                 // load another feed
-                loadFeed(1, function() {
-                    // compare both contents to be different
-                    expect($('.feed').html() !== innerContentHTML).toBe(true);
-                    // call the done validation
-                    done();
-                });
+                loadFeed(0);
             });
          });
-
     });
 }());
