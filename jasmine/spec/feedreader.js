@@ -110,33 +110,21 @@ $(function() {
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
-    describe('New Feed Selection', function() {
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
-         var contentChanged = false;
-         // execute the load function before the expectations, and send the done
-         // object to identify if the callback is succesfull
-         beforeEach( function(done) {
-            loadFeed(0, function() {
-                // add event to identify dom changes in the element
-                $('.feed').bind('DOMSubtreeModified',function(){
-                    contentChanged = true;
-                    done();
-                });
+    // execute the load function for the first element on the allFeed list.
+    it('loadFeed changes the content in the .feed container', function(done) {
+        var innerContentHTML = '';
+        loadFeed(0, function() {
+            // gets the html for the loaded element
+            innerContentHTML = $('.feed').html();
 
-                // load another feed
-                loadFeed(0);
+            // load another feed
+            loadFeed(1, function() {
+                // compare both contents to be different
+                expect($('.feed').html() !== innerContentHTML).toBe(true);
+                // call the done validation
+                done();
             });
-         });
-
-         // execute the load function for the first element on the allFeed list.
-         it('loadFeed changes the content in the .feed container', function() {
-            expect( contentChanged ).toBe(true);
-            // unbind dom changes event
-            $('.feed').unbind('DOMSubtreeModified');
-         });
+        });
     });
 
 
