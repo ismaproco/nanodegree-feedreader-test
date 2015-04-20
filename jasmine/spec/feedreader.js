@@ -74,11 +74,9 @@ $(function() {
           it('menu is clicks toggle menu', function() {
             // Selects the menu-icon link object
             var menuIcon = $('.menu-icon-link');
-            // perform a click action
             menuIcon.click();
             // expect the body no longer has the hidden class
             expect($(document.body).hasClass('menu-hidden')).toBe(false);
-            // perform a click action again
             menuIcon.click();
             // expect the body to had the hidden class
             expect($(document.body).hasClass('menu-hidden')).toBe(true);         
