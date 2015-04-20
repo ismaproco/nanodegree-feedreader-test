@@ -14,6 +14,9 @@
 
 - The remaining test I needed to validate if the content change when a loadFeed was called, I struggled a bit about it, but found the solution by adding and event to the html and identify if the dom three of the html container changed, and I added the done() call to that event.
 
+- Added missing method from previous revisions, and update project using the comments from the Code Review of the project submission.
+
+
 # Additional Test
 
 - This tests assume that the page has some event that identify changes in the allFeeds object and update the menu, when the add, update or remove of an element happen to it.
