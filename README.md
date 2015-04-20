@@ -10,7 +10,9 @@
 
 - Then I added some logic to test the menu click.
 
-- Then I try to implement the logic to test the async calls of the application.
+- Then I try to implement the logic to test the async calls of the application, I had some trouble defining how to use the before each but I revisit the video about async calls and the jasmine documentation, and with that I solve the problem.
+
+- The remaining test I needed to validate if the content change when a loadFeed was called, I struggled a bit about it, but found the solution by adding and event to the html and identify if the dom three of the html container changed, and I added the done() call to that event.
 
 
 
@@ -21,7 +23,9 @@
 
 https://api.jquery.com/click/
 
-- 
+- Jasmine reference to have a deep understanding of the async calls management.
+
+http://jasmine.github.io/2.0/introduction.html
 
 
 
