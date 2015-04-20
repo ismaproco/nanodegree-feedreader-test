@@ -109,29 +109,4 @@ $(function() {
             expect($('.feed .entry').length).toBeGreaterThan(0);
          });
     });
-
-    /* TODO: Write a new test suite named "New Feed Selection" */
-
-    describe('New Feed Selection', function() {
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
-
-         // execute the load function for the first element on the allFeed list.
-         it('loadFeed changes the content in the .feed container', function(done) {
-            var contentChanged = false;
-            loadFeed(0, function() {
-                // add event to identify dom changes in the element
-                $('.feed').bind("DOMSubtreeModified",function(){
-                  contentChanged = true;
-                  expect( contentChanged ).toBe(true);
-                  done();
-                });
-
-                // load another feed
-                loadFeed(0);
-            });
-         });
-    });
 }());
