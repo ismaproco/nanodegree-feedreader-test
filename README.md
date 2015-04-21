@@ -19,6 +19,8 @@
 
 # Additional Test
 
+AllFeeds Array methods
+----------------------
 - This tests assume that the page has some event that identify changes in the allFeeds object and update the menu, when the add, update or remove of an element happen to it.
 
 - Add feed: Check that a new element added to the AllFeeds to appear in the list menu.
@@ -26,6 +28,23 @@
 - Remove feed: Check that a removed feed get removed from the menu.
 
 - Update feed URL: Check the update of the URL of a feed.
+
+LocalStorage Feeds
+----------------------
+- This test assumes the existence of a method that moves feed entries from the localStorage to the feed list.
+- LocalStorage Feeds: Check existence of the feed items of the localStorage in the Feed List, the elements can not be repeated.
+
+Images in the feedlist
+----------------------
+- This test assume during the creation of the feed links there is a method that check for images and change the class of the list item, and the image to comply with the layout.
+
+- Images in the feed-list: Check the feed list items that have the feed-image class to actually have an image, and the image in those list items to have the class feed-thumb
+
+Social
+----------------------
+- This test assume there is an Async method that load the social counters of a feed, and it add them to the feed link html.
+
+- Social: Check the creation of the social counters html of an list item
 
 
 # Reference
