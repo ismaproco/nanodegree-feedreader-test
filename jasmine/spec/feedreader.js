@@ -31,7 +31,7 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        it('All feeds had the URL defined', function() {
+        it('had URL defined', function() {
             allFeeds.forEach( function(feed) {
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).toBeGreaterThan(0);
@@ -43,7 +43,7 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-        it('All feeds had the NAME defined', function() {
+        it('had the NAME defined', function() {
             allFeeds.forEach( function(feed) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name.length).toBeGreaterThan(0);
@@ -59,7 +59,7 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-         it('menu is hidden by default', function() {
+         it('is hidden by default', function() {
             // select the document's body
             var documentBody = $(document.body);
             // expect the body to had the menu-hidden class by default
@@ -71,7 +71,7 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-          it('menu is clicks toggle menu', function() {
+          it('click event toggle menu', function() {
             // Selects the menu-icon link object
             var menuIcon = $('.menu-icon-link');
             menuIcon.click();
@@ -101,7 +101,7 @@ $(function() {
          });
 
          // checks the .feed container to have at least one entry
-         it('LoadFeed add at least one element to the .feed container', function() {
+         it('add at least one element to the .feed container', function() {
             expect($('.feed .entry').length).toBeGreaterThan(0);
          });
     });
@@ -115,7 +115,7 @@ $(function() {
          */
 
          // execute the load function for the first element on the allFeed list.
-         it('loadFeed changes the content in the .feed container', function(done) {
+         it('changes the content in the .feed container', function(done) {
             var innerContentHTML = '';
             loadFeed(0, function() {
                 // gets the html for the loaded element
