@@ -163,4 +163,38 @@ $(function() {
             expect($('.feed-list li:contains("Brand New Entry")').length).toBeGreaterThan(0);
         });
     });
+
+    // the feeds loaded  in the feed list are added to the localStorage to have a record of 
+    // the previously loaded feeds, and they are loaded in the list from the localStorage
+    describe('LocalStorage Feeds', function() {
+        it('Populate feed list with localStorage feeds',function() { 
+            //call method that move feeds from the localStorage to the list
+            //expect each of the local storage items to be in the list only one time.
+        });
+
+        it('Save feeds in the localStorage',function() { 
+            // move the list of feeds to the localStorage
+            // expect only one element of every feed.
+        });
+    });
+
+    // the feed list's li that had the class 'feed-image' must have a inner image with
+    // a class feed-thumb, and can only have one image.
+    describe('Images in the feedlist',function() {
+        it('feed with images had the image class', function() {
+            // get all current feeds with the feed-image class
+            // expect every image in the the feed-image li to have only one image
+            // expect every image to have the feed-thumb class
+        });
+    });
+
+    // Test the social services of the feed.
+    decribe('Social', function() {
+        // get the social counters per feed
+        // increase counter of the twitter feed
+        // increase counter of the facebook feed
+        // increase counter of the google feed
+
+    });
+
 }());
