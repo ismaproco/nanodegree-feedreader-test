@@ -211,10 +211,12 @@ $(function() {
         it('get social counters', function(done) {
             // call the function that loads the social counters for a feed
             loadSocialCounters(0,function() {
-                // expect to have the html for twitter, facebook and google
-                expect($('.twitter-counter').length).toBe(0);
-                expect($('.facebook-counter').length).toBe(0);
-                expect($('.google-counter').length).toBe(0);
+                // expect the first element to have the html for 
+                // twitter, facebook and google counters
+                listItem = $( $('.feed li')[0] );
+                expect(listItem.find('twitter-counter').length).toBe(0);
+                expect(listItem.find('.facebook-counter').length).toBe(0);
+                expect(listItem.find('.google-counter').length).toBe(0);
                 done();    
             });
         });
