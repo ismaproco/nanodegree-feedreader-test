@@ -169,12 +169,24 @@ $(function() {
     describe('LocalStorage Feeds', function() {
         it('Populate feed list with localStorage feeds',function() { 
             //call method that move feeds from the localStorage to the list
-            //expect each of the local storage items to be in the list only one time.
-        });
+            moveFeedFromLocalStorage(allFeeds);
+            
+            // get the feeds from the localStorage, the localStorage has the entries from the 
+            // async call
+            var localFeeds = JSON.parse( localStorage.getItem('feeds') );
+            // get the links from the feed list
+            var feedLinks = $('.feed a').map(function() {
+                return $(this).attr('href');
+            });
 
-        it('Save feeds in the localStorage',function() { 
-            // move the list of feeds to the localStorage
-            // expect only one element of every feed.
+            //expect each of the local storage items to be in the list only one time.
+            localFeeds.forEach(function(feed) {
+                // count the number of urls per feed.link
+                var filteredUrls = feedLinks.filter(function(url) {
+                    return feed.link === url;
+                });
+                expect(filteredUrls).toBe(1);
+            });
         });
     });
 
@@ -183,18 +195,29 @@ $(function() {
     describe('Images in the feedlist',function() {
         it('feed with images had the image class', function() {
             // get all current feeds with the feed-image class
-            // expect every image in the the feed-image li to have only one image
-            // expect every image to have the feed-thumb class
+            var feedAnchors = $('.feed-image a');
+            feedAnchors.forEach(function(anchor) {
+                // expect every image in the the feed-image li to have only one image
+                expect( $(anchor).find('img').length ).toBe(1);
+                // expect every image to have the feed-thumb class
+                expect( $(anchor).find('img.feed-thumb').length ).toBe(1);
+            });
         });
     });
 
     // Test the social services of the feed.
-    decribe('Social', function() {
+    describe('Social', function() {
         // get the social counters per feed
-        // increase counter of the twitter feed
-        // increase counter of the facebook feed
-        // increase counter of the google feed
-
+        it('get social counters', function(done) {
+            // call the function that loads the social counters for a feed
+            loadSocialCounters(0,function() {
+                // expect to have the html for twitter, facebook and google
+                expect($('.twitter-counter').length).toBe(0);
+                expect($('.facebook-counter').length).toBe(0);
+                expect($('.google-counter').length).toBe(0);
+                done();    
+            });
+        });
     });
 
 }());
